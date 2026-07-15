@@ -1,24 +1,14 @@
-# Generative AI Applications with RAG and LangChain
+# Develop Generative AI Applications: Get Started
 
-> Build practical AI applications using **Retrieval-Augmented Generation (RAG)**, **LangChain**, and **Large Language Models (LLMs)**. This capstone module focuses on implementing document-based Question Answering systems and deploying them through a simple web interface.
+> Learn the fundamentals of building Generative AI applications using **Large Language Models (LLMs)**, **Prompt Engineering**, **LangChain**, and **IBM watsonx.ai**. This module combines hands-on notebooks with a practical project to introduce modern AI application development.
 
 ---
 
 # Module Overview
 
-This module brings together the concepts learned throughout the Generative AI specialization and applies them to building end-to-end AI applications.
+This module serves as the entry point to the IBM RAG & Agentic AI Professional Certificate.
 
-You'll learn how to:
-
-- Load documents from multiple sources
-- Process documents for Retrieval-Augmented Generation (RAG)
-- Generate embeddings
-- Store embeddings in a vector database
-- Retrieve relevant documents
-- Build a Question Answering (QA) application
-- Deploy a simple web interface using Gradio
-
-Unlike the previous module, which focused on the fundamentals of RAG and LangChain, this module emphasizes their practical implementation through hands-on notebooks and projects.
+You'll learn how to interact with foundation models, apply prompt engineering techniques, use LangChain to simplify AI workflows, and build a modular Generative AI application using Flask. The focus is on understanding the core building blocks required to develop maintainable AI-powered applications.
 
 ---
 
@@ -26,129 +16,133 @@ Unlike the previous module, which focused on the fundamentals of RAG and LangCha
 
 After completing this module, you will be able to:
 
-- Load documents using LangChain document loaders
-- Split documents into chunks for efficient retrieval
-- Generate document embeddings
-- Build and query a vector database
-- Implement document retrieval using LangChain
-- Build a basic Retrieval-Augmented Generation (RAG) application
-- Develop a simple web interface using Gradio
+- Understand how Large Language Models (LLMs) generate responses
+- Apply advanced prompt engineering techniques
+- Build reusable AI workflows using LangChain
+- Compare and evaluate different foundation models
+- Generate structured AI outputs
+- Develop modular AI-powered applications
+- Understand the architecture of a Generative AI application
 
 ---
 
 # Repository Structure
 
 ```text
-13-generative-ai-applications-with-rag-and-langchain/
+01-develop-generative-ai-applications-get-started/
 
 ├── README.md
 ├── notebooks/
 └── projects/
-    ├── genai_gradio_app/
-    └── genai_gradio_qabot_app/
+    └── genai-multi-llm-assistant/
 ```
 
 ---
 
 # Featured Notebooks
 
-The **notebooks/** directory contains the hands-on labs and exercises from the IBM AI Engineering Professional Certificate.
+The **notebooks/** directory contains the hands-on labs from the IBM RAG & Agentic AI Professional Certificate.
 
-Topics covered include:
-
-- Document Loaders
-- Text Splitting
-- Embeddings
-- Vector Databases
-- ChromaDB
-- Document Retrieval
-- LangChain
-- Question Answering
-- Gradio
+- 01-Master-Prompt-Engineering-And-LangChain-PromptTemplates
+- 02-Build-Smarter-AI-Apps-Empower-LLMs-With-LangChain
 
 ---
 
-# Featured Projects
+# Featured Project
 
-The **projects/** directory contains complete implementation examples that demonstrate how the concepts learned in this module are combined to build working Generative AI applications.
+### genai-multi-llm-assistant
 
-### genai_gradio_app
+A modular Generative AI assistant that integrates multiple Large Language Models through **LangChain** and **IBM watsonx.ai**.
 
-A simple Generative AI application built with **LangChain** and **Gradio**, demonstrating how to interact with a Large Language Model through a lightweight web interface.
+The project demonstrates:
 
----
-
-### genai_gradio_qabot_app
-
-A Retrieval-Augmented Generation (RAG) Question Answering application that combines **LangChain**, **ChromaDB**, and **Gradio** to answer user questions using external documents as the knowledge source.
-
----
-
-# Prerequisites
-
-Before starting this module, you should understand:
-
-- Python Programming
-- Large Language Models (LLMs)
-- Prompt Engineering
-- Retrieval-Augmented Generation (RAG)
-- LangChain Fundamentals
-- AI Agents Fundamentals
-
-Knowledge from the previous modules will help you better understand the implementation workflow presented in this module.
+- Multi-LLM integration
+- Prompt engineering
+- LangChain workflows
+- Structured JSON outputs
+- Modular application architecture
+- Flask-based AI application development
 
 ---
 
-# Scope of This Module
+# Related Notes
 
-This module focuses on implementing the **fundamental building blocks** of a simple RAG application.
+The conceptual topics introduced in this module are documented in the centralized **notes/** directory.
 
-Topics include:
-
-- Document Processing
-- Text Splitting
-- Embeddings
-- Vector Databases
-- Document Retrieval
-- LangChain Integration
-- Gradio Interface
-
-Advanced topics such as:
-
-- Hybrid Search
-- Reranking
-- Graph RAG
-- LangGraph
-- Agentic AI
-- Multi-Agent Systems
-- Production RAG Architectures
-
-are intentionally excluded and are covered in dedicated advanced learning paths.
+```text
+notes/
+└── generative-ai/
+    ├── 01-advanced-prompt-engineering.md
+    ├── 02-langchain-expression-language-lcel.md
+    ├── 03-structured-output-parsing.md
+    └── 04-enterprise-generative-ai-application-architecture.md
+```
 
 ---
 
 # Skills You'll Gain
 
-By completing this module, you'll be able to:
+By completing this module, you'll gain practical experience with:
 
-- Build simple AI applications using LangChain
-- Process documents for Retrieval-Augmented Generation (RAG)
-- Generate embeddings and create vector databases
-- Retrieve relevant documents using semantic search
-- Build document Question Answering applications
-- Develop lightweight AI interfaces using Gradio
-- Understand the complete workflow of a basic RAG application
-
----
-
-# References
-
-- IBM AI Engineering Professional Certificate
-- LangChain Documentation
-- Hugging Face Documentation
-- Chroma Documentation
-- Gradio Documentation
+- Large Language Models (LLMs)
+- Prompt Engineering
+- LangChain
+- LangChain Expression Language (LCEL)
+- IBM watsonx.ai
+- Foundation Models
+- Structured AI Outputs
+- Flask-based AI Applications
+- Modular AI Application Design
 
 ---
 
-> **This module serves as the implementation-focused capstone of the Generative AI specialization. It demonstrates how the core concepts of LangChain and Retrieval-Augmented Generation (RAG) come together to build simple, end-to-end AI applications, providing a strong foundation for advanced RAG architectures and Agentic AI systems.**
+# Technologies Used
+
+### Programming Language
+
+- Python
+
+### AI Frameworks
+
+- LangChain
+
+### Foundation Models
+
+- IBM Granite
+- Llama
+- Mistral
+
+### AI Technologies
+
+- Large Language Models (LLMs)
+- Prompt Engineering
+- Structured Output Parsing
+
+### Development
+
+- Flask
+- Jupyter Notebook
+
+---
+
+# Learning Outcome
+
+After completing this module, you'll understand the essential building blocks of modern Generative AI applications—from effective prompt design and model selection to LangChain integration and modular application architecture. These concepts provide the foundation for the subsequent modules on Retrieval-Augmented Generation (RAG), AI Agents, and Agentic AI systems.
+
+---
+
+# 📖 Repository Context
+
+This module is part of my **IBM RAG & Agentic AI Journey**, where I document my hands-on learning through the **IBM RAG & Agentic AI Professional Certificate** on **Coursera**.
+
+This module focuses on the fundamentals of building Generative AI applications using **Large Language Models (LLMs)**, **Prompt Engineering**, **LangChain**, and **IBM watsonx.ai**.
+
+The objective of this module is to:
+
+- Document my hands-on learning journey.
+- Build a strong foundation in Generative AI application development.
+- Demonstrate practical implementations using notebooks and projects.
+- Create reusable technical notes for future reference.
+- Share practical AI engineering knowledge with the developer community.
+
+---
