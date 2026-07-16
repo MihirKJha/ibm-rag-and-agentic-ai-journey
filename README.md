@@ -20,6 +20,7 @@ This repository combines:
 - 🏗️ AI application architecture
 - 🤖 Enterprise AI engineering concepts
 
+
 ---
 
 # Learning Roadmap
@@ -289,8 +290,6 @@ Sharing practical insights on Enterprise AI, Cloud Architecture, Backend Enginee
 
 # 📖 Repository Context
 
-This repository documents my journey through the **IBM RAG & Agentic AI Professional Certificate**.
-
 Building on the foundations established in my **IBM AI Engineering Journey**, this repository focuses on designing and developing modern AI applications using **Generative AI**, **Retrieval-Augmented Generation (RAG)**, **AI Agents**, and **Agentic AI**.
 
 The objective of this repository is to:
@@ -300,3 +299,30 @@ The objective of this repository is to:
 - Create a structured knowledge base through curated technical notes.
 - Showcase practical projects beyond the course labs.
 - Share Enterprise AI engineering concepts with the developer community.
+
+
+## 👨‍💻 Author
+
+**Mihir Jha**
+
+**Software Architect | AI Engineering | Multi-Cloud Solutions**
+
+Passionate about designing intelligent, scalable, and resilient applications that combine cloud-native architecture with modern Generative AI technologies.
+
+If you're interested in **Enterprise AI Engineering**, **Cloud Architecture**, **Large Language Models**, **RAG**, **AI Agents**, or **Production AI Systems**, feel free to explore the repository, share feedback, or connect with me.
+
+## GitHub
+
+**https://github.com/MihirKJha**
+
+## LinkedIn
+
+**https://www.linkedin.com/in/mihirkrjha/**
+
+## Newsletter
+
+**Enterprise AI Engineering**
+
+**https://www.linkedin.com/newsletters/enterprise-ai-engineering-7479222208079319041/**
+
+Sharing practical insights on Enterprise AI, Cloud Architecture, Backend Engineering, Large Language Models, RAG, AI Agents, and production-ready AI systems.

@@ -4,6 +4,22 @@
 
 ---
 
+# 📌 About
+
+This module is part of my **IBM RAG & Agentic AI Journey**, where I document my hands-on learning through the **IBM RAG & Agentic AI Professional Certificate** on **Coursera**.
+
+This module focuses on the fundamentals of building Generative AI applications using **Large Language Models (LLMs)**, **Prompt Engineering**, **LangChain**, and **IBM watsonx.ai**.
+
+The objective of this module is to:
+
+- Document my hands-on learning journey.
+- Build a strong foundation in Generative AI application development.
+- Demonstrate practical implementations using notebooks and projects.
+- Create reusable technical notes for future reference.
+- Share practical AI engineering knowledge with the developer community.
+
+---
+
 # Module Overview
 
 This module serves as the entry point to the IBM RAG & Agentic AI Professional Certificate.
@@ -131,18 +147,28 @@ After completing this module, you'll understand the essential building blocks of
 
 ---
 
-# 📖 Repository Context
+## 👨‍💻 Author
 
-This module is part of my **IBM RAG & Agentic AI Journey**, where I document my hands-on learning through the **IBM RAG & Agentic AI Professional Certificate** on **Coursera**.
+**Mihir Jha**
 
-This module focuses on the fundamentals of building Generative AI applications using **Large Language Models (LLMs)**, **Prompt Engineering**, **LangChain**, and **IBM watsonx.ai**.
+**Software Architect | AI Engineering | Multi-Cloud Solutions**
 
-The objective of this module is to:
+Passionate about designing intelligent, scalable, and resilient applications that combine cloud-native architecture with modern Generative AI technologies.
 
-- Document my hands-on learning journey.
-- Build a strong foundation in Generative AI application development.
-- Demonstrate practical implementations using notebooks and projects.
-- Create reusable technical notes for future reference.
-- Share practical AI engineering knowledge with the developer community.
+If you're interested in **Enterprise AI Engineering**, **Cloud Architecture**, **Large Language Models**, **RAG**, **AI Agents**, or **Production AI Systems**, feel free to explore the repository, share feedback, or connect with me.
 
----
+## GitHub
+
+**https://github.com/MihirKJha**
+
+## LinkedIn
+
+**https://www.linkedin.com/in/mihirkrjha/**
+
+## Newsletter
+
+**Enterprise AI Engineering**
+
+**https://www.linkedin.com/newsletters/enterprise-ai-engineering-7479222208079319041/**
+
+Sharing practical insights on Enterprise AI, Cloud Architecture, Backend Engineering, Large Language Models, RAG, AI Agents, and production-ready AI systems.

@@ -1,24 +1,22 @@
-# Generative AI Applications with RAG and LangChain
+# Build RAG Applications: Get Started
 
-> Build practical AI applications using **Retrieval-Augmented Generation (RAG)**, **LangChain**, and **Large Language Models (LLMs)**. This capstone module focuses on implementing document-based Question Answering systems and deploying them through a simple web interface.
+> Learn how to build **Retrieval-Augmented Generation (RAG)** applications using **LangChain**, **LlamaIndex**, **IBM Granite**, and **Gradio**. This module focuses on implementing complete RAG pipelines, creating interactive AI applications, and understanding how modern RAG frameworks enable context-aware and knowledge-grounded AI systems.
+
+---
+
+# 📌 About
+
+This module is part of my **IBM RAG & Agentic AI Journey**, where I document my hands-on learning through the **IBM RAG & Agentic AI Professional Certificate** on Coursera.
+
+Building on the Generative AI fundamentals from the previous module, this module focuses on designing and implementing Retrieval-Augmented Generation (RAG) applications using **LangChain** and **LlamaIndex**. It combines hands-on notebooks with practical projects to demonstrate how external knowledge can be integrated into Large Language Models to generate accurate and context-aware responses.
 
 ---
 
 # Module Overview
 
-This module brings together the concepts learned throughout the Generative AI specialization and applies them to building end-to-end AI applications.
+Retrieval-Augmented Generation (RAG) enhances the capabilities of Large Language Models by retrieving relevant information from external knowledge sources before generating responses.
 
-You'll learn how to:
-
-- Load documents from multiple sources
-- Process documents for Retrieval-Augmented Generation (RAG)
-- Generate embeddings
-- Store embeddings in a vector database
-- Retrieve relevant documents
-- Build a Question Answering (QA) application
-- Deploy a simple web interface using Gradio
-
-Unlike the previous module, which focused on the fundamentals of RAG and LangChain, this module emphasizes their practical implementation through hands-on notebooks and projects.
+In this module, you'll learn how to build complete RAG pipelines by processing documents, generating embeddings, performing semantic retrieval, and augmenting prompts with retrieved context. You'll also develop interactive RAG applications using Gradio and explore LlamaIndex as an alternative framework for building RAG applications.
 
 ---
 
@@ -26,129 +24,184 @@ Unlike the previous module, which focused on the fundamentals of RAG and LangCha
 
 After completing this module, you will be able to:
 
-- Load documents using LangChain document loaders
-- Split documents into chunks for efficient retrieval
-- Generate document embeddings
-- Build and query a vector database
-- Implement document retrieval using LangChain
-- Build a basic Retrieval-Augmented Generation (RAG) application
-- Develop a simple web interface using Gradio
+- Explain how Retrieval-Augmented Generation (RAG) improves AI applications.
+- Build end-to-end RAG pipelines using LangChain.
+- Process and chunk documents for semantic retrieval.
+- Generate embeddings and understand vector search.
+- Build interactive RAG applications using Gradio.
+- Understand the fundamentals of LlamaIndex.
+- Compare LangChain and LlamaIndex for RAG application development.
+- Develop modular and production-oriented RAG applications.
 
 ---
 
 # Repository Structure
 
 ```text
-13-generative-ai-applications-with-rag-and-langchain/
+02-build-rag-applications-get-started/
 
 ├── README.md
 ├── notebooks/
 └── projects/
-    ├── genai_gradio_app/
-    └── genai_gradio_qabot_app/
+    ├── genai-gradio-chatbot/
+    ├── genai-gradio-pdf-assistant/
+    └── genai-networking-assistant/
 ```
 
 ---
 
 # Featured Notebooks
 
-The **notebooks/** directory contains the hands-on labs and exercises from the IBM AI Engineering Professional Certificate.
+The **notebooks/** directory contains the hands-on labs from the IBM RAG & Agentic AI Professional Certificate.
 
-Topics covered include:
-
-- Document Loaders
-- Text Splitting
-- Embeddings
-- Vector Databases
-- ChromaDB
-- Document Retrieval
-- LangChain
-- Question Answering
-- Gradio
+- 01-Build-RAG-Pipelines-with-LangChain
+- 02-Build-RAG-Applications-with-Gradio
+- 03-Build-RAG-Applications-with-LlamaIndex
 
 ---
 
 # Featured Projects
 
-The **projects/** directory contains complete implementation examples that demonstrate how the concepts learned in this module are combined to build working Generative AI applications.
+This module contains multiple hands-on projects that demonstrate different Retrieval-Augmented Generation (RAG) application patterns.
 
-### genai_gradio_app
+### genai-gradio-chatbot
 
-A simple Generative AI application built with **LangChain** and **Gradio**, demonstrating how to interact with a Large Language Model through a lightweight web interface.
+An interactive Generative AI chatbot built using **Gradio**, **LangChain**, and **IBM watsonx.ai** that provides a web-based interface for interacting with foundation models.
+
+**Key concepts**
+
+- Gradio interface
+- LangChain integration
+- IBM Granite foundation models
+- Interactive chatbot development
 
 ---
 
-### genai_gradio_qabot_app
+### genai-gradio-pdf-assistant
 
-A Retrieval-Augmented Generation (RAG) Question Answering application that combines **LangChain**, **ChromaDB**, and **Gradio** to answer user questions using external documents as the knowledge source.
+A Retrieval-Augmented Generation (RAG) application that answers questions from uploaded PDF documents by combining document processing, embeddings, semantic retrieval, and Large Language Models.
 
----
+**Key concepts**
 
-# Prerequisites
-
-Before starting this module, you should understand:
-
-- Python Programming
-- Large Language Models (LLMs)
-- Prompt Engineering
+- PDF document ingestion
+- Text chunking
+- Embedding generation
+- Semantic retrieval
+- Question Answering (QA)
 - Retrieval-Augmented Generation (RAG)
-- LangChain Fundamentals
-- AI Agents Fundamentals
-
-Knowledge from the previous modules will help you better understand the implementation workflow presented in this module.
 
 ---
 
-# Scope of This Module
+### genai-networking-assistant
 
-This module focuses on implementing the **fundamental building blocks** of a simple RAG application.
+A domain-specific AI assistant that uses Retrieval-Augmented Generation (RAG) to answer networking-related questions using a custom knowledge base.
 
-Topics include:
+**Key concepts**
 
-- Document Processing
-- Text Splitting
-- Embeddings
-- Vector Databases
-- Document Retrieval
-- LangChain Integration
-- Gradio Interface
+- Domain-specific RAG
+- Knowledge retrieval
+- Prompt augmentation
+- LangChain workflows
+- Context-aware response generation
 
-Advanced topics such as:
+---
 
-- Hybrid Search
-- Reranking
-- Graph RAG
-- LangGraph
-- Agentic AI
-- Multi-Agent Systems
-- Production RAG Architectures
+# Related Notes
 
-are intentionally excluded and are covered in dedicated advanced learning paths.
+The conceptual topics introduced in this module are documented in the centralized **notes/** directory.
+
+### notes/rag/
+
+- 01-enterprise-rag-system-architecture.md
+- 02-document-processing-and-vectorization.md
+- 03-retrieval-and-generation-pipeline.md
+
+### notes/generative-ai/
+
+- 05-llamaindex-fundamentals.md
 
 ---
 
 # Skills You'll Gain
 
-By completing this module, you'll be able to:
+By completing this module, you'll gain practical experience with:
 
-- Build simple AI applications using LangChain
-- Process documents for Retrieval-Augmented Generation (RAG)
-- Generate embeddings and create vector databases
-- Retrieve relevant documents using semantic search
-- Build document Question Answering applications
-- Develop lightweight AI interfaces using Gradio
-- Understand the complete workflow of a basic RAG application
+- Retrieval-Augmented Generation (RAG)
+- LangChain
+- LlamaIndex
+- Document Processing
+- Text Chunking
+- Embedding Models
+- Vector Databases
+- Semantic Search
+- Prompt Augmentation
+- Gradio
+- IBM Granite
+- Enterprise RAG Architecture
+
+---
+
+# Technologies Used
+
+### Programming Language
+
+- Python
+
+### AI Frameworks
+
+- LangChain
+- LlamaIndex
+
+### Foundation Models
+
+- IBM Granite
+
+### AI Technologies
+
+- Retrieval-Augmented Generation (RAG)
+- Embedding Models
+- Semantic Search
+- Vector Databases
+
+### Development
+
+- Gradio
+- Jupyter Notebook
 
 ---
 
 # References
 
-- IBM AI Engineering Professional Certificate
+- IBM RAG & Agentic AI Professional Certificate
 - LangChain Documentation
-- Hugging Face Documentation
-- Chroma Documentation
+- LlamaIndex Documentation
+- IBM watsonx.ai Documentation
 - Gradio Documentation
 
 ---
 
-> **This module serves as the implementation-focused capstone of the Generative AI specialization. It demonstrates how the core concepts of LangChain and Retrieval-Augmented Generation (RAG) come together to build simple, end-to-end AI applications, providing a strong foundation for advanced RAG architectures and Agentic AI systems.**
+## 👨‍💻 Author
+
+**Mihir Jha**
+
+**Software Architect | AI Engineering | Multi-Cloud Solutions**
+
+Passionate about designing intelligent, scalable, and resilient applications that combine cloud-native architecture with modern Generative AI technologies.
+
+If you're interested in **Enterprise AI Engineering**, **Cloud Architecture**, **Large Language Models**, **RAG**, **AI Agents**, or **Production AI Systems**, feel free to explore the repository, share feedback, or connect with me.
+
+## GitHub
+
+**https://github.com/MihirKJha**
+
+## LinkedIn
+
+**https://www.linkedin.com/in/mihirkrjha/**
+
+## Newsletter
+
+**Enterprise AI Engineering**
+
+**https://www.linkedin.com/newsletters/enterprise-ai-engineering-7479222208079319041/**
+
+Sharing practical insights on Enterprise AI, Cloud Architecture, Backend Engineering, Large Language Models, RAG, AI Agents, and production-ready AI systems.
