@@ -1,154 +1,224 @@
-# Generative AI Applications with RAG and LangChain
+# Vector Databases for RAG: An Introduction
 
-> Build practical AI applications using **Retrieval-Augmented Generation (RAG)**, **LangChain**, and **Large Language Models (LLMs)**. This capstone module focuses on implementing document-based Question Answering systems and deploying them through a simple web interface.
-
----
-
-# Module Overview
-
-This module brings together the concepts learned throughout the Generative AI specialization and applies them to building end-to-end AI applications.
-
-You'll learn how to:
-
-- Load documents from multiple sources
-- Process documents for Retrieval-Augmented Generation (RAG)
-- Generate embeddings
-- Store embeddings in a vector database
-- Retrieve relevant documents
-- Build a Question Answering (QA) application
-- Deploy a simple web interface using Gradio
-
-Unlike the previous module, which focused on the fundamentals of RAG and LangChain, this module emphasizes their practical implementation through hands-on notebooks and projects.
+> This module is part of my **IBM RAG & Agentic AI Journey**, where I explore the concepts and practical implementation of **Vector Databases**, **Semantic Search**, and **ChromaDB** for building Retrieval-Augmented Generation (RAG) applications.
+>
+> The module focuses on understanding how high-dimensional vector representations enable semantic search, recommendation systems, and efficient information retrieval—forming the foundation of modern enterprise AI applications.
 
 ---
 
-# Learning Objectives
+# 📚 Module Overview
 
-After completing this module, you will be able to:
+Traditional databases excel at exact keyword matching but struggle to capture semantic meaning. Modern AI applications require retrieval based on similarity rather than exact text matching.
 
-- Load documents using LangChain document loaders
-- Split documents into chunks for efficient retrieval
-- Generate document embeddings
-- Build and query a vector database
-- Implement document retrieval using LangChain
-- Build a basic Retrieval-Augmented Generation (RAG) application
-- Develop a simple web interface using Gradio
+In this module, I explored how **Vector Databases** address this challenge by storing embeddings and performing similarity search over high-dimensional vectors.
+
+Through hands-on notebooks and projects, I learned how to:
+
+- Understand vector representations and embeddings
+- Perform similarity search
+- Work with ChromaDB collections
+- Build semantic search applications
+- Develop recommendation systems
+- Integrate vector databases into Retrieval-Augmented Generation (RAG) workflows
+
+This module provides the infrastructure knowledge required to build scalable, production-ready RAG systems.
 
 ---
 
-# Repository Structure
+# 🎯 Learning Objectives
+
+- Understand vector databases and their role in AI applications
+- Learn how semantic similarity search works
+- Explore embeddings and vector representations
+- Work with ChromaDB collections
+- Perform CRUD operations on vector databases
+- Implement metadata filtering
+- Build semantic search applications
+- Develop recommendation systems using embeddings
+- Understand how vector databases support RAG architectures
+
+---
+
+# 📂 Repository Structure
 
 ```text
-13-generative-ai-applications-with-rag-and-langchain/
+03-vector-databases-for-rag-an-introduction/
 
-├── README.md
 ├── notebooks/
-└── projects/
-    ├── genai_gradio_app/
-    └── genai_gradio_qabot_app/
+│   └── 01-Similarity-Search-By-Hand.ipynb
+│
+├── projects/
+│   ├── genai-text-similarity-search/
+│   ├── genai-hybrid-vector-search/
+│   └── genai-food-recommendation-assistant/
+│
+└── README.md
 ```
 
 ---
 
-# Featured Notebooks
+# 📓 Featured Notebook
 
-The **notebooks/** directory contains the hands-on labs and exercises from the IBM AI Engineering Professional Certificate.
+This module includes a foundational notebook that introduces the mathematical principles behind semantic similarity before working with vector databases.
 
-Topics covered include:
+| Notebook | Description |
+|----------|-------------|
+| **01-Similarity-Search-By-Hand** | Demonstrates manual similarity search using vector representations to build an intuitive understanding of semantic search and vector mathematics. |
 
-- Document Loaders
-- Text Splitting
+---
+
+# 💻 Hands-on Projects
+
+The notebook concepts are extended into practical AI applications demonstrating how vector databases power semantic search, recommendation systems, and Retrieval-Augmented Generation (RAG).
+
+| Project | Description |
+|----------|-------------|
+| **GenAI Text Similarity Search** | Demonstrates semantic similarity search using vector embeddings and ChromaDB to retrieve text based on meaning rather than exact keyword matching. |
+| **GenAI Hybrid Vector Search** | Combines semantic similarity with metadata filtering to improve retrieval accuracy for enterprise search scenarios. |
+| **GenAI Food Recommendation Assistant** | Implements an intelligent recommendation system that uses vector similarity to recommend food items based on user preferences and semantic relationships. |
+
+---
+
+# 📚 Related Notes
+
+The theoretical concepts covered in this module are documented separately within the centralized **notes** directory.
+
+## 📁 Vector Databases
+
+- Vector Database Fundamentals
+- Similarity Search Techniques
+- ChromaDB Fundamentals
+- Vector Databases in RAG
+
+These notes provide architecture-focused explanations, workflows, best practices, interview questions, and enterprise design considerations beyond the hands-on exercises.
+
+---
+
+# 🛠 Skills Developed
+
+## Vector Databases
+
+- Vector Representations
+- High-Dimensional Data
 - Embeddings
-- Vector Databases
-- ChromaDB
-- Document Retrieval
-- LangChain
-- Question Answering
-- Gradio
+- Collections
+- CRUD Operations
+- Metadata Management
 
----
+### Semantic Search
 
-# Featured Projects
-
-The **projects/** directory contains complete implementation examples that demonstrate how the concepts learned in this module are combined to build working Generative AI applications.
-
-### genai_gradio_app
-
-A simple Generative AI application built with **LangChain** and **Gradio**, demonstrating how to interact with a Large Language Model through a lightweight web interface.
-
----
-
-### genai_gradio_qabot_app
-
-A Retrieval-Augmented Generation (RAG) Question Answering application that combines **LangChain**, **ChromaDB**, and **Gradio** to answer user questions using external documents as the knowledge source.
-
----
-
-# Prerequisites
-
-Before starting this module, you should understand:
-
-- Python Programming
-- Large Language Models (LLMs)
-- Prompt Engineering
-- Retrieval-Augmented Generation (RAG)
-- LangChain Fundamentals
-- AI Agents Fundamentals
-
-Knowledge from the previous modules will help you better understand the implementation workflow presented in this module.
-
----
-
-# Scope of This Module
-
-This module focuses on implementing the **fundamental building blocks** of a simple RAG application.
-
-Topics include:
-
-- Document Processing
-- Text Splitting
-- Embeddings
-- Vector Databases
-- Document Retrieval
-- LangChain Integration
-- Gradio Interface
-
-Advanced topics such as:
-
+- Similarity Search
+- Cosine Similarity
+- Euclidean Distance
+- Dot Product
+- Approximate Nearest Neighbor (ANN)
 - Hybrid Search
-- Reranking
-- Graph RAG
-- LangGraph
-- Agentic AI
-- Multi-Agent Systems
-- Production RAG Architectures
 
-are intentionally excluded and are covered in dedicated advanced learning paths.
+### AI Engineering
 
----
-
-# Skills You'll Gain
-
-By completing this module, you'll be able to:
-
-- Build simple AI applications using LangChain
-- Process documents for Retrieval-Augmented Generation (RAG)
-- Generate embeddings and create vector databases
-- Retrieve relevant documents using semantic search
-- Build document Question Answering applications
-- Develop lightweight AI interfaces using Gradio
-- Understand the complete workflow of a basic RAG application
+- ChromaDB
+- Recommendation Systems
+- Information Retrieval
+- Semantic Search Applications
+- Retrieval-Augmented Generation (RAG)
 
 ---
 
-# References
+# ⚙ Technologies Used
 
-- IBM AI Engineering Professional Certificate
-- LangChain Documentation
-- Hugging Face Documentation
-- Chroma Documentation
-- Gradio Documentation
+- Python
+- ChromaDB
+- IBM watsonx.ai
+- LangChain
+- Embedding Models
+- Jupyter Notebook
 
 ---
 
-> **This module serves as the implementation-focused capstone of the Generative AI specialization. It demonstrates how the core concepts of LangChain and Retrieval-Augmented Generation (RAG) come together to build simple, end-to-end AI applications, providing a strong foundation for advanced RAG architectures and Agentic AI systems.**
+# 📈 Learning Progression
+
+```text
+Generative AI
+       │
+       ▼
+Prompt Engineering
+       │
+       ▼
+LangChain
+       │
+       ▼
+LlamaIndex
+       │
+       ▼
+Enterprise RAG
+       │
+       ▼
+Document Processing
+       │
+       ▼
+Retrieval Pipeline
+       │
+       ▼
+Vector Databases
+       │
+       ▼
+Semantic Search
+       │
+       ▼
+Recommendation Systems
+```
+
+---
+
+# 🎯 Key Takeaways
+
+After completing this module, I gained practical experience in:
+
+- Understanding how embeddings represent semantic meaning
+- Working with vector databases for efficient information retrieval
+- Implementing semantic similarity search
+- Building recommendation systems using embeddings
+- Applying metadata filtering for enterprise search
+- Understanding how vector databases support scalable RAG applications
+
+---
+
+# 📌 Repository Context
+
+This module is part of my **IBM RAG & Agentic AI Journey**, where I document my hands-on learning through the **IBM RAG & Agentic AI Professional Certificate** on **Coursera**.
+
+The objective of this repository is to:
+
+- Document my learning journey.
+- Build production-oriented AI applications.
+- Create a structured knowledge base for Generative AI, RAG, AI Agents, and Agentic AI.
+- Showcase practical AI Engineering skills.
+- Share architecture-focused learning with the engineering community.
+
+---
+
+## 👨‍💻 Author
+
+**Mihir Jha**
+
+**Software Architect | AI Engineering | Multi-Cloud Solutions**
+
+Passionate about designing intelligent, scalable, and resilient applications that combine cloud-native architecture with modern Generative AI technologies.
+
+If you're interested in **Enterprise AI Engineering**, **Cloud Architecture**, **Large Language Models**, **RAG**, **AI Agents**, or **Production AI Systems**, feel free to explore the repository, share feedback, or connect with me.
+
+## GitHub
+
+**https://github.com/MihirKJha**
+
+## LinkedIn
+
+**https://www.linkedin.com/in/mihirkrjha/**
+
+## Newsletter
+
+**Enterprise AI Engineering**
+
+**https://www.linkedin.com/newsletters/enterprise-ai-engineering-7479222208079319041/**
+
+Sharing practical insights on Enterprise AI, Cloud Architecture, Backend Engineering, Large Language Models, RAG, AI Agents, and production-ready AI systems.
