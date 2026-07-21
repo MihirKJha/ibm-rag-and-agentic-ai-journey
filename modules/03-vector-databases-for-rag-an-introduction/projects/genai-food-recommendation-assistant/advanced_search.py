@@ -1,15 +1,17 @@
-from shared_functions import *
+from utils.shared_functions_utils import *
 
 
 def main():
+
     """Main function for advanced search demonstrations"""
+
     try:
         print("🔬 Advanced Food Search System")
         print("=" * 50)
         print("Loading food database with advanced filtering capabilities...")
         
         # Load food data from JSON file
-        food_items = load_food_data('./food_with_category.json')
+        food_items = load_food_data('data/food_with_category.json')
         print(f"✅ Loaded {len(food_items)} food items successfully")
         
         # Create collection specifically for advanced search operations
@@ -29,7 +31,9 @@ def main():
 
 
 def interactive_advanced_search(collection):
+
     """Interactive advanced search with filtering options"""
+
     print("\n" + "="*50)
     print("🔧 ADVANCED SEARCH WITH FILTERS")
     print("="*50)
@@ -73,7 +77,9 @@ def interactive_advanced_search(collection):
 
 
 def perform_basic_search(collection):
+
     """Perform basic similarity search without filters"""
+
     print("\n🔍 BASIC SIMILARITY SEARCH")
     print("-" * 30)
     
@@ -89,7 +95,9 @@ def perform_basic_search(collection):
 
 
 def perform_cuisine_filtered_search(collection):
+
     """Perform cuisine-filtered similarity search"""
+
     print("\n🍽️ CUISINE-FILTERED SEARCH")
     print("-" * 30)
     
@@ -131,7 +139,9 @@ def perform_cuisine_filtered_search(collection):
 
 
 def perform_calorie_filtered_search(collection):
+
     """Perform calorie-filtered similarity search"""
+
     print("\n🔥 CALORIE-FILTERED SEARCH")
     print("-" * 30)
     
@@ -159,7 +169,9 @@ def perform_calorie_filtered_search(collection):
 
 
 def perform_combined_filtered_search(collection):
+
     """Perform search with multiple filters combined"""
+
     print("\n🎯 COMBINED FILTERS SEARCH")
     print("-" * 30)
     
@@ -196,7 +208,9 @@ def perform_combined_filtered_search(collection):
 
 
 def run_search_demonstrations(collection):
+
     """Run predetermined demonstrations of different search types"""
+
     
     print("\n📊 SEARCH DEMONSTRATIONS")
     
@@ -251,7 +265,9 @@ def run_search_demonstrations(collection):
 
 
 def display_search_results(results, title, show_details=True):
+
     """Display search results in a formatted way"""
+
     print(f"\n📋 {title}")
     print("=" * 50)
     
@@ -278,7 +294,9 @@ def display_search_results(results, title, show_details=True):
 
 
 def show_advanced_help():
+
     """Display help information for advanced search"""
+    
     print("\n📖 ADVANCED SEARCH HELP")
     print("=" * 40)
     print("Search Types:")

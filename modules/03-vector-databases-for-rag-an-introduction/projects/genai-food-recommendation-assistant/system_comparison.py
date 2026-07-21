@@ -1,4 +1,4 @@
-from shared_functions import *
+from utils.shared_functions_utils import *
 import time
 
 def main():

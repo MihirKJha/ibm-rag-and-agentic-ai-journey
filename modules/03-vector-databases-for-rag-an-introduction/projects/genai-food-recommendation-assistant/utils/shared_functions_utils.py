@@ -10,13 +10,16 @@ client = chromadb.Client()
 
 
 def load_food_data(file_path: str) -> List[Dict]:
+    
     """Load food data from JSON file"""
+    
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             food_data = json.load(file)
         
         # Ensure each item has required fields and normalize the structure
         for i, item in enumerate(food_data):
+            
             # Normalize food_id to string
             if 'food_id' not in item:
                 item['food_id'] = str(i + 1)
@@ -46,6 +49,7 @@ def load_food_data(file_path: str) -> List[Dict]:
                 item['taste_profile'] = ''
         
         print(f"Successfully loaded {len(food_data)} food items from {file_path}")
+        
         return food_data
         
     except Exception as e:
@@ -56,7 +60,9 @@ def load_food_data(file_path: str) -> List[Dict]:
 
 def create_similarity_search_collection(collection_name: str, 
                                         collection_metadata: dict = None):
+    
     """Create ChromaDB collection with sentence transformer embeddings"""
+    
     try:
         # Try to delete existing collection to start fresh
         client.delete_collection(collection_name)
@@ -80,7 +86,9 @@ def create_similarity_search_collection(collection_name: str,
 
 
 def populate_similarity_collection(collection, food_items: List[Dict]):
+    
     """Populate collection with food data and generate embeddings"""
+    
     documents = []
     metadatas = []
     ids = []
@@ -89,7 +97,8 @@ def populate_similarity_collection(collection, food_items: List[Dict]):
     used_ids = set()
     
     for i, food in enumerate(food_items):
-        # Create comprehensive text for embedding using rich JSON structure
+
+        # Create comprehensive text for embedding using rich JSON structure        
         text = f"Name: {food['food_name']}. "
         text += f"Description: {food.get('food_description', '')}. "
         text += f"Ingredients: {', '.join(food.get('food_ingredients', []))}. "
@@ -149,7 +158,9 @@ def populate_similarity_collection(collection, food_items: List[Dict]):
 
 
 def perform_similarity_search(collection, query: str, n_results: int = 5) -> List[Dict]:
+    
     """Perform similarity search and return formatted results"""
+    
     try:
         results = collection.query(
             query_texts=[query],
@@ -184,7 +195,6 @@ def perform_similarity_search(collection, query: str, n_results: int = 5) -> Lis
     except Exception as e:
         print(f"Error in similarity search: {e}")
         return []
-
 
 
 def perform_filtered_similarity_search(

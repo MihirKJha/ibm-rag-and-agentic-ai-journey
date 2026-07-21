@@ -1,4 +1,4 @@
-from shared_functions import *
+from utils.shared_functions_utils import *
 
 # Global variable to store loaded food items
 food_items = []
@@ -6,7 +6,9 @@ food_items = []
 
 
 def main():
+
     """Main function for interactive CLI food recommendation system"""
+
     try:
         print("🍽️  Interactive Food Recommendation System")
         print("=" * 50)
@@ -14,7 +16,7 @@ def main():
         
         # Load food data from file
         global food_items
-        food_items = load_food_data('./food_with_category.json')
+        food_items = load_food_data('data/food_with_category.json')
         print(f"✅ Loaded {len(food_items)} food items successfully")
         
         # Create and populate search collection
@@ -34,7 +36,9 @@ def main():
 
 
 def interactive_food_chatbot(collection):
+
     """Interactive CLI chatbot for food recommendations"""
+
     print("\n" + "="*50)
     print("🤖 INTERACTIVE FOOD SEARCH CHATBOT")
     print("="*50)
@@ -78,7 +82,9 @@ def interactive_food_chatbot(collection):
 
 
 def show_help_menu():
+
     """Display help information for users"""
+
     print("\n📖 HELP MENU")
     print("-" * 30)
     print("Search Examples:")
@@ -93,7 +99,9 @@ def show_help_menu():
 
 
 def handle_food_search(collection, query):
+
     """Handle food similarity search with enhanced display"""
+
     print(f"\n🔍 Searching for '{query}'...")
     print("   Please wait...")
     
@@ -134,7 +142,9 @@ def handle_food_search(collection, query):
 
 
 def suggest_related_searches(results):
+
     """Suggest related searches based on current results"""
+    
     if not results:
         return
     
