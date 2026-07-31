@@ -219,6 +219,161 @@ LLM
 ```
 
 ---
+# 💻 LangChain Implementation Walkthrough
+
+The following example demonstrates how an **Ensemble Retriever** is built by combining a **VectorStore Retriever** (semantic search) and a **BM25 Retriever** (keyword search). Each component has a single responsibility, reflecting the layered architecture commonly used in enterprise Retrieval-Augmented Generation (RAG) systems.
+
+---
+
+## Step 1 — Load Documents
+
+Load and prepare documents that will be indexed by different retrieval strategies.
+
+```python
+from langchain_community.document_loaders import TextLoader
+
+loader = TextLoader("knowledge_base.txt")
+documents = loader.load()
+```
+
+---
+
+## Step 2 — Build the Vector Retriever
+
+Create embeddings, index the documents in a vector database, and expose a semantic retriever.
+
+```python
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
+vector_store = Chroma.from_documents(
+    documents=documents,
+    embedding=embeddings
+)
+
+vector_retriever = vector_store.as_retriever(
+    search_kwargs={"k": 4}
+)
+```
+
+---
+
+## Step 3 — Build the BM25 Retriever
+
+Create a keyword-based retriever for exact term matching.
+
+```python
+from langchain_community.retrievers import BM25Retriever
+
+bm25_retriever = BM25Retriever.from_documents(documents)
+bm25_retriever.k = 4
+```
+
+---
+
+## Step 4 — Create the Ensemble Retriever
+
+Combine multiple retrievers using configurable weights.
+
+```python
+from langchain.retrievers import EnsembleRetriever
+
+ensemble_retriever = EnsembleRetriever(
+    retrievers=[
+        vector_retriever,
+        bm25_retriever
+    ],
+    weights=[0.7, 0.3]
+)
+```
+
+---
+
+## Step 5 — Retrieve Relevant Documents
+
+Execute both retrieval strategies and return a unified ranked result.
+
+```python
+query = "How do I configure authentication in the API?"
+
+retrieved_documents = ensemble_retriever.invoke(query)
+
+for document in retrieved_documents:
+    print(document.page_content)
+```
+
+---
+
+## Step 6 — Integrate with the LLM
+
+Use the retrieved documents as context for Retrieval-Augmented Generation (RAG).
+
+```python
+from langchain_core.prompts import PromptTemplate
+
+context = "\n\n".join(
+    doc.page_content
+    for doc in retrieved_documents
+)
+
+prompt = PromptTemplate.from_template("""
+Answer the user's question using only the provided context.
+
+Context:
+{context}
+
+Question:
+{question}
+""")
+
+final_prompt = prompt.format(
+    context=context,
+    question=query
+)
+
+response = llm.invoke(final_prompt)
+
+print(response.content)
+```
+
+---
+
+## End-to-End Retrieval Flow
+
+```text
+                    User Query
+                         │
+                         ▼
+              Ensemble Retriever
+        ┌────────────────┴────────────────┐
+        ▼                                 ▼
+ VectorStore Retriever             BM25 Retriever
+ (Semantic Search)                 (Keyword Search)
+        │                                 │
+        └────────────────┬────────────────┘
+                         ▼
+               Score Fusion & Ranking
+                         │
+                         ▼
+             Top Retrieved Documents
+                         │
+                         ▼
+               Prompt Construction
+                         │
+                         ▼
+                  Foundation Model
+                         │
+                         ▼
+                 AI Generated Answer
+```
+
+This workflow demonstrates how an Ensemble Retriever combines the strengths of semantic and keyword retrieval to improve document recall and ranking quality. By aggregating results from multiple retrieval strategies before passing them to the LLM, enterprise RAG systems can provide more accurate, robust, and contextually relevant responses across a wide variety of query types.
+
+---
 
 # LlamaIndex Alternatives
 
