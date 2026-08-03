@@ -319,6 +319,131 @@ AI Response
 This workflow illustrates how LlamaIndex transforms raw documents into searchable knowledge that can be used by Large Language Models to generate accurate, context-aware responses.
 
 ---
+# 💻 End-to-End LlamaIndex Implementation
+
+The following example demonstrates how a typical LlamaIndex application transforms raw documents into searchable knowledge. Each layer has a dedicated responsibility, from document ingestion to AI-powered question answering.
+
+---
+
+## Step 1 — Load Documents
+
+Load enterprise documents into LlamaIndex.
+
+```python
+from llama_index.core import SimpleDirectoryReader
+
+documents = SimpleDirectoryReader(
+    input_dir="./documents"
+).load_data()
+```
+
+---
+
+## Step 2 — Parse Documents into Nodes
+
+Split large documents into smaller semantic chunks suitable for retrieval.
+
+```python
+from llama_index.core.node_parser import SentenceSplitter
+
+parser = SentenceSplitter(
+    chunk_size=512,
+    chunk_overlap=50
+)
+
+nodes = parser.get_nodes_from_documents(documents)
+```
+
+---
+
+## Step 3 — Configure the Embedding Model
+
+Generate vector embeddings for every node.
+
+```python
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+
+embed_model = HuggingFaceEmbedding(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+```
+
+---
+
+## Step 4 — Build the Vector Store Index
+
+Create a searchable vector index from the processed nodes.
+
+```python
+from llama_index.core import VectorStoreIndex
+
+index = VectorStoreIndex(
+    nodes,
+    embed_model=embed_model
+)
+```
+
+---
+
+## Step 5 — Create the Query Engine
+
+The Query Engine coordinates retrieval and response generation.
+
+```python
+query_engine = index.as_query_engine(
+    similarity_top_k=3
+)
+```
+
+---
+
+## Step 6 — Ask Questions
+
+Submit natural language questions to retrieve relevant knowledge.
+
+```python
+response = query_engine.query(
+    "Explain how Retrieval-Augmented Generation works."
+)
+
+print(response)
+```
+
+---
+
+## End-to-End Workflow
+
+```text
+Enterprise Documents
+         │
+         ▼
+SimpleDirectoryReader
+         │
+         ▼
+SentenceSplitter
+         │
+         ▼
+Document Nodes
+         │
+         ▼
+Embedding Model
+         │
+         ▼
+Vector Store Index
+         │
+         ▼
+Query Engine
+         │
+         ▼
+Large Language Model
+         │
+         ▼
+AI Response
+```
+
+This example illustrates the core LlamaIndex workflow for Retrieval-Augmented Generation (RAG). Documents are ingested, transformed into nodes, embedded into a vector index, and queried through a high-level Query Engine that retrieves relevant context before generating an AI response. This layered architecture enables scalable, modular, and production-ready knowledge retrieval systems.
+
+---
 
 # 11. Benefits of LlamaIndex
 
