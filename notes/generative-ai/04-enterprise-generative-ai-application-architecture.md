@@ -73,7 +73,7 @@ A modular architecture separates these concerns into independent layers.
 
 ---
 
-# 3. From Standalone Scripts to Enterprise AI Applications
+# 3. From Stand-alone Scripts to Enterprise AI Applications
 
 The evolution of AI application development can be viewed as follows.
 
@@ -659,8 +659,159 @@ Monitor & Improve
 Each stage contributes to improving application quality, reliability, and maintainability.
 
 ---
+# 20 💻 Enterprise AI Application Walkthrough
 
-# 20. Best Practices
+The following example demonstrates how an enterprise Generative AI application is organized using a layered architecture. Each layer has a single responsibility and collaborates with the adjacent layers to process user requests.
+
+---
+
+## Step 1 — Configuration Layer
+
+Centralize application settings instead of hardcoding them throughout the application.
+
+```python
+# config.py
+
+MODEL_ID = "ibm/granite-4-h-small"
+
+MODEL_PARAMETERS = {
+    "temperature": 0.2,
+    "max_new_tokens": 256
+}
+
+PROJECT_ID = "your-project-id"
+URL = "https://us-south.ml.cloud.ibm.com"
+```
+
+---
+
+## Step 2 — Prompt Layer
+
+The Prompt Layer is responsible for generating reusable prompts.
+
+```python
+# prompt.py
+
+from langchain_core.prompts import PromptTemplate
+
+PROMPT = PromptTemplate(
+    template="""
+You are an enterprise AI assistant.
+
+Question:
+{question}
+
+Provide a concise answer.
+""",
+    input_variables=["question"]
+)
+```
+
+---
+
+## Step 3 — Model Layer
+
+The Model Layer encapsulates communication with the foundation model.
+
+```python
+# model.py
+
+from langchain_ibm import ChatWatsonx
+from config import *
+
+llm = ChatWatsonx(
+    model_id=MODEL_ID,
+    url=URL,
+    project_id=PROJECT_ID,
+    params=MODEL_PARAMETERS
+)
+```
+
+---
+
+## Step 4 — Business Logic Layer
+
+Business logic orchestrates prompts and model interactions.
+
+```python
+# service.py
+
+from prompt import PROMPT
+from model import llm
+
+chain = PROMPT | llm
+
+def generate_answer(question):
+
+    response = chain.invoke({
+        "question": question
+    })
+
+    return response.content
+```
+
+---
+
+## Step 5 — API Layer
+
+The API exposes the application to external users.
+
+```python
+# app.py
+
+from flask import Flask, request, jsonify
+from service import generate_answer
+
+app = Flask(__name__)
+
+@app.route("/generate", methods=["POST"])
+def generate():
+
+    question = request.json["question"]
+
+    answer = generate_answer(question)
+
+    return jsonify({
+        "answer": answer
+    })
+
+app.run()
+```
+
+---
+
+## End-to-End Request Flow
+
+```text
+                User
+                  │
+                  ▼
+             Flask API
+                  │
+                  ▼
+          Business Logic
+                  │
+                  ▼
+          Prompt Template
+                  │
+                  ▼
+           IBM Granite LLM
+                  │
+                  ▼
+         Generated Response
+                  │
+                  ▼
+             JSON Response
+                  │
+                  ▼
+                User
+```
+
+This simplified implementation illustrates how enterprise AI applications separate configuration, prompt engineering, model interaction, business logic, and API endpoints into independent layers. This modular approach improves maintainability, testability, scalability, and makes it easier to replace individual components without impacting the rest of the application.
+
+---
+
+# 21. Best Practices
 
 When designing enterprise Generative AI applications, consider the following best practices.
 
@@ -708,7 +859,7 @@ A modular architecture enables AI applications to scale from simple prototypes t
 
 ---
 
-# 21. Common Mistakes
+# 22. Common Mistakes
 
 Many AI applications begin as simple prototypes but become difficult to maintain as they grow. The following are common architectural mistakes developers make when building Generative AI applications.
 
@@ -792,7 +943,7 @@ Applications should record:
 
 ---
 
-# 22. Interview Questions
+# 23. Interview Questions
 
 ## Beginner
 
@@ -826,7 +977,7 @@ Applications should record:
 
 ---
 
-# 23. 🚀 Quick Revision Sheet
+# 24. 🚀 Quick Revision Sheet
 
 ## Enterprise Architecture
 
@@ -942,7 +1093,7 @@ Continuous Improvement
 
 ---
 
-# 24. Key Takeaways
+# 25. Key Takeaways
 
 - Enterprise AI applications apply traditional software engineering principles to Generative AI systems.
 - A layered architecture separates user interaction, APIs, business logic, prompt management, model interaction, and output validation into independent components.

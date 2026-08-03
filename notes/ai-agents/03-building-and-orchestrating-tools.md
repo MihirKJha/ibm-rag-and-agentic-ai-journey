@@ -1153,6 +1153,151 @@ Observability is essential for production AI systems.
 
 ---
 
+
+# 💻 LangChain Tool Orchestration Walkthrough
+
+The following example demonstrates how a production AI Agent is built by progressively adding custom tools, registering them with the agent, enabling ReAct reasoning, and orchestrating tool execution. Each layer has a single responsibility, reflecting the modular architecture used in enterprise AI systems.
+
+---
+
+## Step 1 — Build Custom Tools
+
+Create reusable Python functions that encapsulate individual business capabilities.
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def search_customer(customer_id: str) -> str:
+    """Retrieve customer information using customer ID."""
+    return f"Customer {customer_id}: Gold Member"
+
+@tool
+def generate_invoice(customer_id: str) -> str:
+    """Generate an invoice for a customer."""
+    return f"Invoice generated for {customer_id}"
+
+@tool
+def send_email(message: str) -> str:
+    """Send an email notification."""
+    return "Email sent successfully"
+```
+
+---
+
+## Step 2 — Register Available Tools
+
+Expose the tools so the AI Agent can discover and invoke them during reasoning.
+
+```python
+tools = [
+    search_customer,
+    generate_invoice,
+    send_email
+]
+```
+
+---
+
+## Step 3 — Configure the Language Model
+
+Initialize the Large Language Model responsible for reasoning and tool selection.
+
+```python
+from langchain_ibm import ChatWatsonx
+
+llm = ChatWatsonx(
+    model_id="ibm/granite-4-h-small",
+    project_id="your-project-id",
+    url="https://us-south.ml.cloud.ibm.com"
+)
+```
+
+---
+
+## Step 4 — Create the ReAct Agent
+
+Combine the LLM with the registered tools to enable reasoning and action.
+
+```python
+from langchain.agents import create_react_agent
+
+agent = create_react_agent(
+    llm=llm,
+    tools=tools
+)
+```
+
+---
+
+## Step 5 — Create the Agent Executor
+
+The Agent Executor manages reasoning, tool invocation, observations, and final response generation.
+
+```python
+from langchain.agents import AgentExecutor
+
+agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
+    verbose=True
+)
+```
+
+---
+
+## Step 6 — Execute a Multi-Step Request
+
+The agent automatically determines which tools to invoke, executes them in sequence, and generates the final response.
+
+```python
+response = agent_executor.invoke({
+    "input": """
+    Retrieve customer CUST-1024,
+    generate an invoice,
+    and email the confirmation.
+    """
+})
+
+print(response["output"])
+```
+
+---
+
+## End-to-End Orchestration Flow
+
+```text
+                    User Request
+                         │
+                         ▼
+                Large Language Model
+                         │
+                         ▼
+                 ReAct Reasoning Loop
+                         │
+                         ▼
+                  Agent Executor
+                         │
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+   Customer Tool   Invoice Tool   Email Tool
+          │              │              │
+          └──────────────┼──────────────┘
+                         ▼
+                  Tool Observations
+                         │
+                         ▼
+                Large Language Model
+                         │
+                         ▼
+                  Final AI Response
+```
+
+This simplified workflow demonstrates how enterprise AI Agents extend Large Language Models with reusable tools, coordinate them through an Agent Executor, and apply ReAct reasoning to solve complex multi-step tasks. By separating tool implementation, registration, reasoning, and execution into independent layers, the architecture becomes more modular, maintainable, scalable, and suitable for production AI applications.
+
+---
+
+
 # 22. Best Practices
 
 Successful tool orchestration requires thoughtful engineering.
