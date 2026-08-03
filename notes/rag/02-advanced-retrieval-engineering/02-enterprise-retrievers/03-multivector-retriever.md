@@ -273,6 +273,191 @@ MultiVector Retriever
 
 ---
 
+# 💻 LangChain MultiVector Retriever Walkthrough
+
+The following example demonstrates how a **MultiVector Retriever** represents a single document using multiple semantic representations. Instead of relying on a single embedding, summaries, document chunks, and hypothetical questions are embedded independently, allowing the retriever to search across multiple semantic views while returning the original parent document.
+
+---
+
+## Step 1 — Load the Parent Document
+
+Load the original document that will serve as the source of truth during retrieval.
+
+```python
+from langchain_community.document_loaders import TextLoader
+
+loader = TextLoader("enterprise_document.txt")
+documents = loader.load()
+```
+
+---
+
+## Step 2 — Generate Multiple Document Representations
+
+Create different semantic representations of the same document.
+
+```python
+summary = "High-level summary of the enterprise document."
+
+chunks = [
+    "Section discussing authentication...",
+    "Section describing API configuration...",
+    "Section covering deployment..."
+]
+
+questions = [
+    "How is authentication configured?",
+    "How do I deploy the application?",
+    "How are APIs secured?"
+]
+```
+
+---
+
+## Step 3 — Create Multiple Embeddings
+
+Generate embeddings for every semantic representation.
+
+```python
+from langchain_huggingface import HuggingFaceEmbeddings
+
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
+representations = [summary] + chunks + questions
+```
+
+---
+
+## Step 4 — Build the MultiVector Index
+
+Store every representation in the vector store while maintaining a reference to the original parent document.
+
+```python
+from langchain_chroma import Chroma
+
+vector_store = Chroma(
+    collection_name="enterprise_docs",
+    embedding_function=embedding_model
+)
+
+# Each representation shares the same parent document ID
+for text in representations:
+    vector_store.add_texts(
+        texts=[text],
+        metadatas=[{"doc_id": "doc-001"}]
+    )
+```
+
+---
+
+## Step 5 — Create the MultiVector Retriever
+
+Configure the retriever to search across all semantic representations and return the original parent document.
+
+```python
+from langchain.retrievers.multi_vector import MultiVectorRetriever
+from langchain.storage import InMemoryStore
+
+document_store = InMemoryStore()
+
+document_store.mset([
+    ("doc-001", documents[0])
+])
+
+retriever = MultiVectorRetriever(
+    vectorstore=vector_store,
+    docstore=document_store,
+    id_key="doc_id"
+)
+```
+
+---
+
+## Step 6 — Retrieve the Parent Document
+
+A user query is matched against every semantic representation, while the retriever returns the complete parent document.
+
+```python
+query = "How do I configure authentication?"
+
+results = retriever.invoke(query)
+
+for document in results:
+    print(document.page_content)
+```
+
+---
+
+## Step 7 — Pass Context to the LLM
+
+Use the retrieved parent document to construct the final prompt for Retrieval-Augmented Generation (RAG).
+
+```python
+context = "\n\n".join(
+    doc.page_content
+    for doc in results
+)
+
+prompt = f"""
+Use the following context to answer the user's question.
+
+Context:
+{context}
+
+Question:
+{query}
+"""
+
+response = llm.invoke(prompt)
+
+print(response.content)
+```
+
+---
+
+## End-to-End Retrieval Flow
+
+```text
+                 Enterprise Document
+                          │
+                          ▼
+         Multiple Semantic Representations
+      ┌──────────┬──────────┬─────────────┐
+      ▼          ▼          ▼             ▼
+   Summary     Chunks    Questions    Metadata
+      │          │          │             │
+      └──────────┼──────────┼─────────────┘
+                 ▼
+        Multiple Vector Embeddings
+                 │
+                 ▼
+            Chroma Vector Store
+                 │
+                 ▼
+        MultiVector Retriever
+                 │
+                 ▼
+        Parent Document Store
+                 │
+                 ▼
+        Original Source Document
+                 │
+                 ▼
+        Prompt Construction (RAG)
+                 │
+                 ▼
+          Foundation Model (LLM)
+                 │
+                 ▼
+          AI Generated Response
+```
+
+This implementation demonstrates how the **MultiVector Retriever** improves retrieval quality by indexing multiple semantic representations of the same document. During retrieval, similarity search is performed across summaries, chunks, and hypothetical questions, while the retriever returns the original parent document. This approach increases semantic coverage, improves recall, and provides richer context for enterprise Retrieval-Augmented Generation (RAG) systems.
+
+---
+
 # LlamaIndex Alternatives
 
 LlamaIndex does not provide a dedicated **MultiVector Retriever**.
