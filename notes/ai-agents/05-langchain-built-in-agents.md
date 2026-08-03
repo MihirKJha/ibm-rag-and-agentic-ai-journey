@@ -524,6 +524,99 @@ Respond.
 This iterative reasoning makes agents significantly more powerful than simple prompt-response systems.
 
 ---
+# 8. End-to-End Implementation
+
+The following example demonstrates how a built-in LangChain SQL Agent can be assembled using an LLM, SQL toolkit, and enterprise database. The agent automatically reasons about user requests, generates SQL queries, executes them, and returns natural language responses.
+
+---
+
+## Step 1 — Connect to the Database
+
+```python
+from langchain_community.utilities import SQLDatabase
+
+db = SQLDatabase.from_uri(
+    "sqlite:///sales.db"
+)
+```
+
+---
+
+## Step 2 — Configure the Language Model
+
+```python
+from langchain_ibm import ChatWatsonx
+
+llm = ChatWatsonx(
+    model_id="ibm/granite-4-h-small",
+    project_id="your-project-id",
+    url="https://us-south.ml.cloud.ibm.com"
+)
+```
+
+---
+
+## Step 3 — Create the SQL Agent
+
+```python
+from langchain_community.agent_toolkits import (
+    SQLDatabaseToolkit,
+    create_sql_agent,
+)
+
+toolkit = SQLDatabaseToolkit(
+    db=db,
+    llm=llm
+)
+
+agent = create_sql_agent(
+    llm=llm,
+    toolkit=toolkit,
+    verbose=True
+)
+```
+
+---
+
+## Step 4 — Query the Agent
+
+```python
+response = agent.invoke({
+    "input": "Which five customers generated the highest revenue last quarter?"
+})
+
+print(response["output"])
+```
+
+---
+
+## Implementation Flow
+
+```text
+User Question
+      │
+      ▼
+ LangChain SQL Agent
+      │
+      ▼
+ Agent Executor
+      │
+      ▼
+ SQL Toolkit
+      │
+      ▼
+ SQL Database
+      │
+      ▼
+ Query Results
+      │
+      ▼
+ Natural Language Response
+```
+
+This example illustrates how LangChain's built-in SQL Agent combines an LLM, SQL toolkit, and database into a reusable AI component. Developers interact with the agent using natural language, while LangChain manages query generation, execution, and response synthesis behind the scenes.
+
+---
 
 # 8. Agent Types
 
