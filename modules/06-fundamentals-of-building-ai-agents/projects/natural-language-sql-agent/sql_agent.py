@@ -34,14 +34,21 @@ model = ModelInference(
 )
 
 llm = WatsonxLLM(model=model)
+
 mysql_username = "root"  # Replace with your server connect information
+
 mysql_password = (
     "TGbWkWxf2iPljYE3mYm8ilBj"  # Replace with your server connect information
 )
+
 mysql_host = "172.21.155.85"  # Replace with your server connect information
+
 mysql_port = "3306"  # Replace with your server connect information
+
 database_name = "Chinook"
+
 mysql_uri = f"mysql+mysqlconnector://{mysql_username}:{mysql_password}@{mysql_host}:{mysql_port}/{database_name}"
+
 db = SQLDatabase.from_uri(mysql_uri)
 
 agent_executor = create_sql_agent(
