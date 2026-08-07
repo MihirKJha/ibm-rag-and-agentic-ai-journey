@@ -282,7 +282,140 @@ LLM
 ```
 
 ---
+# 💻 LangChain TimeWeighted Retriever Walkthrough
 
+The following example demonstrates how a **TimeWeighted Retriever** combines semantic similarity with document recency. Instead of ranking documents solely by vector similarity, the retriever applies a configurable time decay function to prioritize more recent or recently accessed information before returning context to the LLM.
+
+---
+
+## Step 1 — Load Documents
+
+Load enterprise documents that will be indexed for retrieval.
+
+```python
+from langchain_community.document_loaders import TextLoader
+
+loader = TextLoader("knowledge_base.txt")
+documents = loader.load()
+```
+
+---
+
+## Step 2 — Generate Embeddings and Build the Vector Store
+
+Create vector embeddings and store them in a vector database.
+
+```python
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
+vector_store = Chroma.from_documents(
+    documents=documents,
+    embedding=embeddings
+)
+```
+
+---
+
+## Step 3 — Create the TimeWeighted Retriever
+
+Configure the retriever to consider both semantic similarity and document recency during ranking.
+
+```python
+from langchain.retrievers import TimeWeightedVectorStoreRetriever
+
+retriever = TimeWeightedVectorStoreRetriever(
+    vectorstore=vector_store,
+    decay_rate=0.01,
+    k=4
+)
+```
+
+---
+
+## Step 4 — Retrieve Recent and Relevant Documents
+
+The retriever performs semantic search, applies time decay, and returns the highest-ranked documents.
+
+```python
+query = "What are the latest authentication guidelines?"
+
+retrieved_documents = retriever.invoke(query)
+
+for document in retrieved_documents:
+    print(document.page_content)
+```
+
+---
+
+## Step 5 — Generate the Final Response
+
+Pass the retrieved context to the Large Language Model for Retrieval-Augmented Generation (RAG).
+
+```python
+context = "\n\n".join(
+    doc.page_content
+    for doc in retrieved_documents
+)
+
+prompt = f"""
+Use the following context to answer the user's question.
+
+Context:
+{context}
+
+Question:
+{query}
+"""
+
+response = llm.invoke(prompt)
+
+print(response.content)
+```
+
+---
+
+## End-to-End Retrieval Flow
+
+```text
+                    Enterprise Documents
+                             │
+                             ▼
+                  Generate Embeddings
+                             │
+                             ▼
+                     Chroma Vector Store
+                             │
+                             ▼
+             TimeWeighted Retriever
+              ┌─────────────┴─────────────┐
+              ▼                           ▼
+      Semantic Similarity         Time Decay Scoring
+              │                           │
+              └─────────────┬─────────────┘
+                            ▼
+                  Combined Ranking Score
+                            │
+                            ▼
+              Recent & Relevant Documents
+                            │
+                            ▼
+                 Prompt Construction (RAG)
+                            │
+                            ▼
+                 Foundation Model (LLM)
+                            │
+                            ▼
+                   AI Generated Response
+```
+
+This implementation demonstrates how the **TimeWeighted Retriever** enhances traditional vector retrieval by incorporating document recency into the ranking process. By balancing semantic similarity with temporal importance, it helps enterprise Retrieval-Augmented Generation (RAG) systems surface more current, relevant, and contextually accurate information for dynamic knowledge bases, conversational AI, and long-term memory applications.
+
+---
 # LlamaIndex Alternatives
 
 LlamaIndex does not provide a dedicated **TimeWeighted Retriever**.
